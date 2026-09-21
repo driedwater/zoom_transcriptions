@@ -225,12 +225,12 @@ async def reload_cloud_tab(page, module_url):
         raise RuntimeError("Cloud Recordings tab was not found after module reload")
 
 
-async def process_module(page, module_code, module_url, output_dir, skip_existing, latest=False):
+async def process_module(page, module_code, module_url, output_dir, skip_existing, latest=False, folder_name=None):
     print(f"\n{'='*60}")
     print(f"📚 Module: {module_code}")
     print(f"{'='*60}")
 
-    module_dir = output_dir / module_code
+    module_dir = output_dir / (folder_name or module_code)
     module_dir.mkdir(parents=True, exist_ok=True)
 
     downloaded = 0
@@ -339,8 +339,10 @@ async def run(args):
                 print(f"❌ No URL for module: {module_code}")
                 continue
 
+            module_output = Path(module_config.get("output_dir")) if module_config.get("output_dir") else output_dir
+            folder_name = module_config.get("folder_name")
             d, s, f = await process_module(
-                page, module_code, module_url, output_dir, args.skip_existing, args.latest
+                page, module_code, module_url, module_output, args.skip_existing, args.latest, folder_name=folder_name
             )
             total_downloaded += d
             total_skipped += s

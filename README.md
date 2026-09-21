@@ -40,6 +40,11 @@ D2L_PASSWORD=your_password
   "modules": {
     "INF2004": {
       "url": "https://xsite.singaporetech.edu.sg/d2l/common/dialogs/quickLink/quickLink.d2l?ou=YOUR_OU&type=lti&rcode=YOUR_RCODE&srcou=YOUR_SRCOU&launchFramed=1&framedName=Zoom+Meeting"
+    },
+    "CS101": {
+      "url": "https://xsite.singaporetech.edu.sg/d2l/common/dialogs/quickLink/quickLink.d2l?ou=YOUR_OU&type=lti&rcode=YOUR_RCODE&srcou=YOUR_SRCOU&launchFramed=1&framedName=Zoom+Meeting",
+      "output_dir": "C:\\path\\to\\custom\\output",
+      "folder_name": "CS101_transcriptions"
     }
   }
 }
@@ -50,6 +55,8 @@ To find the URL for your module:
 1. Go to your D2L course page
 2. Navigate to Communications > Zoom Meeting
 3. Copy the URL from your browser's address bar
+
+Each module can optionally have its own `output_dir` to save transcripts to a custom location, and a `folder_name` to customize the subfolder name. If `folder_name` is not set, it defaults to the module code.
 
 ## Usage
 
